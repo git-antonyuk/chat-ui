@@ -2,6 +2,8 @@
 
 🚧 Work in Progress 🚧
 
+<video src="./docs/demo.mov" width="50%" />
+
 <img src="./docs/demo-2.png" alt="Chat UI Light" width="50%" />
 
 <img src="./docs/demo-1.png" alt="Chat UI Dark" width="50%" />

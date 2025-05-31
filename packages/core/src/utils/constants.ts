@@ -1,0 +1,1 @@
+export const PROVIDER_KEY_CHAT_CONFIG = 'chat-config';

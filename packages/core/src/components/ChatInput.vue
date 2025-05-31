@@ -3,11 +3,20 @@
   import { Separator } from '@/components/ui/separator';
   import { Button } from '@/components/ui/button';
   import { Input } from '@/components/ui/input';
+  import { ArrowUp } from 'lucide-vue-next';
+  import { useChatConfig } from '@/composables/useChatConfig';
 
-  const chatMessage = ref('');
+  const { loading } = useChatConfig();
 
-  const onSubmit = (values: any) => {
-    console.log('Form submitted!', values);
+  const chatMessage = ref<string>('');
+
+  const emit = defineEmits<{
+    (e: 'sendMessage', message: string): void;
+  }>();
+
+  const onSubmit = () => {
+    emit('sendMessage', chatMessage.value);
+    chatMessage.value = '';
   };
 </script>
 
@@ -19,12 +28,14 @@
         <Input
           ref="chatMessageInputRef"
           type="text"
-          placeholder="Type your message..."
+          placeholder="Type your message and press Enter to send..."
           v-model="chatMessage"
           focus-on-mount
         />
       </div>
-      <Button type="submit"> Submit </Button>
+      <Button type="submit" :disabled="loading" :loading="loading">
+        <ArrowUp v-if="!loading" />
+      </Button>
     </form>
   </div>
 </template>

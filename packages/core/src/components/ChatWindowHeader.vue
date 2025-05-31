@@ -1,16 +1,15 @@
-<script lang="ts">
-  export type Props = {
-    title?: string;
-    subtitle?: string;
-  };
-</script>
-
 <script lang="ts" setup>
   import { CardTitle, CardDescription } from '@/components/ui/card';
   import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-  import { Separator } from '@/components/ui/separator'
-  const { title = 'Environmental Agent', subtitle = 'Online' } =
-    defineProps<Props>();
+  import { Separator } from '@/components/ui/separator';
+  import type { ChatConfig } from '@/types';
+  import { useChatConfig } from '@/composables/useChatConfig';
+
+  const {
+    chatTitle: title,
+    chatSubtitle: subtitle,
+    chatAvatar: avatarSrc,
+  }: ChatConfig = useChatConfig();
 </script>
 
 <template>
@@ -21,11 +20,11 @@
       </div>
       <div class="col-span-8 text-center">
         <CardTitle>{{ title }}</CardTitle>
-        <CardDescription>{{ subtitle }}</CardDescription>
+        <CardDescription v-if="subtitle">{{ subtitle }}</CardDescription>
       </div>
       <div class="col-span-2 flex justify-end">
-        <Avatar>
-          <AvatarImage src="https://github.com/unovue.png" alt="@unovue" />
+        <Avatar class="w-12 h-12 dark:bg-white">
+          <AvatarImage v-if="avatarSrc" :src="avatarSrc" :alt="title" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
       </div>

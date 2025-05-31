@@ -2,7 +2,7 @@
 
 🚧 Work in Progress 🚧
 
-<video src="./docs/demo.mov" width="50%" />
+[![Watch the demo](./docs/demo-1.png)](./docs/demo.mov)
 
 <img src="./docs/demo-2.png" alt="Chat UI Light" width="50%" />
 
